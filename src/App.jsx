@@ -1,4 +1,5 @@
 import "./App.css";
+import "primereact/resources/themes/lara-light-cyan/theme.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
 import Sidebar from "./components/Sidebar.jsx";

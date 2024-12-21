@@ -18,6 +18,7 @@ export default function Sidebar() {
       <div className="container-logo">
         <img src={LogoSistema} alt="Logo" className="logo" />
       </div>
+        <div style={{ borderBottom: '1px solid white'}} className="separador"></div>
       <ul>
         <li>
           <NavLink

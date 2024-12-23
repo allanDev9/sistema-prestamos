@@ -7,7 +7,7 @@ import { FaPerson } from "react-icons/fa6";
 import LogoSistema from './img/logo-sistema.png';
 
 export default function Sidebar() {
-  const [activeLink, setActiveLink] = useState("/cartera");
+  const [activeLink, setActiveLink] = useState("");
 
   const handleActiveLink = (link) => {
     setActiveLink(link);

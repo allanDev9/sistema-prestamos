@@ -10,8 +10,15 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap';
+import { useNavigate } from "react-router-dom";
 
-export default function NavbarNav(args) {
+export default function NavbarNav({ isUsername ,...args }) {
+  const navigate = useNavigate();
+
+  const logout = () => {
+    navigate('/login');
+  };
+  
   return (
     <div>
       <Navbar style={{ height: '80px'}} {...args}>
@@ -19,13 +26,13 @@ export default function NavbarNav(args) {
         <Nav>
           <UncontrolledDropdown nav inNavbar>
             <DropdownToggle nav caret className='text-white fw-bold'>
-              Usuario
+              {isUsername}
             </DropdownToggle>
             <DropdownMenu right>
               <DropdownItem>Mi perfil</DropdownItem>
               <DropdownItem>Configuración</DropdownItem>
               <DropdownItem divider />
-              <DropdownItem>Cerrar sesión</DropdownItem>
+              <DropdownItem onClick={logout}>Cerrar sesión</DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
         </Nav>

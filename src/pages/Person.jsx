@@ -38,7 +38,7 @@ function Person({ data }) {
       className="card"
       style={{ marginTop: "70px", padding: "30px", border: "1px solid black" }}
     >
-      <div className="container-search">
+      <div className="container-search d-flex justify-content-start mb-3">
         <div className="search-input flex justify-content-center">
           <AutoComplete
             field="name" 

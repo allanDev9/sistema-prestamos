@@ -14,11 +14,11 @@ import {
 export default function NavbarNav(args) {
   return (
     <div>
-      <Navbar {...args}>
-        <NavbarBrand className='text-white' href="/">Sistema Bancario</NavbarBrand>
+      <Navbar style={{ height: '80px'}} {...args}>
+        <NavbarBrand style={{ marginLeft: '5%'}} className='fw-bold text-white fs-2' href="/">Sistema Bancario</NavbarBrand>
         <Nav>
           <UncontrolledDropdown nav inNavbar>
-            <DropdownToggle nav caret className='text-white'>
+            <DropdownToggle nav caret className='text-white fw-bold'>
               Usuario
             </DropdownToggle>
             <DropdownMenu right>

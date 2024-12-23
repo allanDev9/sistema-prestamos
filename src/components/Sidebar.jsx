@@ -7,7 +7,7 @@ import { FaPerson } from "react-icons/fa6";
 import LogoSistema from './img/logo-sistema.png';
 
 export default function Sidebar() {
-  const [activeLink, setActiveLink] = useState("");
+  const [activeLink, setActiveLink] = useState("/cartera");
 
   const handleActiveLink = (link) => {
     setActiveLink(link);
@@ -22,7 +22,7 @@ export default function Sidebar() {
       <ul>
         <li>
           <NavLink
-            className={activeLink === "/home" ? "active" : ""}
+            className={activeLink === "/cartera" ? "active" : ""}
             style={{ fontWeight: "bold" }}
             to="/cartera"
             onClick={() => handleActiveLink("/cartera")}
@@ -33,7 +33,7 @@ export default function Sidebar() {
         </li>
         <li>
           <NavLink
-            className={activeLink === "/home" ? "active" : ""}
+            className={activeLink === "/prestamos" ? "active" : ""}
             style={{ fontWeight: "bold" }}
             to="/prestamos"
             onClick={() => handleActiveLink("/prestamos")}
@@ -44,7 +44,7 @@ export default function Sidebar() {
         </li>
         <li>
           <NavLink
-            className={activeLink === "/home" ? "active" : ""}
+            className={activeLink === "/miembros" ? "active" : ""}
             style={{ fontWeight: "bold" }}
             to="/miembros"
             onClick={() => handleActiveLink("/miembros")}

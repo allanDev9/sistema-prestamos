@@ -6,12 +6,19 @@ import { FaMoneyBillTrendUp } from "react-icons/fa6";
 import { FaPerson } from "react-icons/fa6";
 import LogoSistema from './img/logo-sistema.png';
 
-export default function Sidebar() {
+export default function Sidebar({ resetActiveLink }) {
   const [activeLink, setActiveLink] = useState("");
 
   const handleActiveLink = (link) => {
     setActiveLink(link);
   };
+  React.useEffect(() => { 
+    if (resetActiveLink) {
+      setActiveLink('')
+    }
+  } , [resetActiveLink]);
+
+
 
   return (
     <div className="sidebar">

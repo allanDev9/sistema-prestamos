@@ -64,3 +64,8 @@ body {
   border-radius: 50%;
   width: 80px;
 }
+.btn-back:hover{
+  color: rgb(15, 0, 175); 
+  cursor: pointer; 
+  font-weight: bold;
+}

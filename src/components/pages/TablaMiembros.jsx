@@ -3,7 +3,7 @@ import { AutoComplete } from 'primereact/autocomplete';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 
-function Person({ data }) {
+export default function TablaMiembros({ data }) {
   const [datatable, setDatatable] = useState(data);
   const [filteredCountries, setFilteredCountries] = useState([]);
   const [searchValue, setSearchValue] = useState("");
@@ -66,5 +66,3 @@ function Person({ data }) {
     </div>
   );
 }
-
-export default Person;

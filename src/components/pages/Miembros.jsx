@@ -1,14 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import Person from "./Person";
+import TablaMiembros from "./TablaMiembros";
 
 export default function Miembros() {
-  const [persons, setPersons] = useState([]);
+  const [miembros, setMiembros] = useState([]);
 
   useEffect(() => {
     fetch('http://localhost:3003/api/miembros')
       .then(response => response.json())
-      .then(data => setPersons(data))
+      .then(data => setMiembros(data))
       .catch(error => console.error('Error fetching miembros:', error));
   }, []);
 
@@ -22,7 +22,7 @@ export default function Miembros() {
         className="container-datatable-miembros"
       >
         <div style={{ width: '90%'}} >
-          <Person data={persons} />
+          <TablaMiembros data={miembros} />
         </div>
       </div>
     </section>

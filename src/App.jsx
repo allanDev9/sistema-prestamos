@@ -39,29 +39,18 @@ export default function App() {
 
 function MainApp({ username, setUsername}) {
   const navigate = useNavigate();
-  const [resetActiveLink, setResetActiveLink] = useState(false);
   
   const handleBack = () => {
     setUsername("");
-    setResetActiveLink(true);
     navigate(-1);
   };
-
-  React.useEffect(() => {
-    if (resetActiveLink) {
-      setResetActiveLink(false);
-    }
-  }, [resetActiveLink]);
   return (
     <>
       <Navbar isUsername={username}
 
       />
-      <div className="d-flex justify-content-end me-4 px-2 fs-5">
-        <button onClick={handleBack} className="btn-back fw-bold py-1 px-4 mt-3 text-decoration-none border-0 bg-transparent position-absolute cursor-pointer">Atras</button>
-      </div>
       <div className="flex">
-        <Sidebar resetActiveLink={resetActiveLink} />
+        <Sidebar/>
         <div className="content">
           <Routes>
             <Route path="/" element={<Navigate to="/login" />} />

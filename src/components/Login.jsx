@@ -1,19 +1,14 @@
-import { useState , useRef, useEffect} from "react";
+import { useState, useRef, useEffect } from "react";
 import { InputText } from "primereact/inputtext";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import { Messages } from 'primereact/messages';
-import users from './data/user.json';
-        
 
-export function Form({ onLogin, data }) {
+export function Form({ onLogin }) {
   const [isUsername, setUsername] = useState("");
   const [isPassword, setPassword] = useState("");
-  const [isUsernameError, setUsernameError] = useState("");
-  const [isPasswordError, setPasswordError] = useState("");
   const [isButtonDisabled, setButtonDisabled] = useState(true);
   const navigate = useNavigate();
-  console.log(isUsername);
   const usernameErrorRef = useRef(null);
   const passwordErrorRef = useRef(null);
 
@@ -25,34 +20,31 @@ export function Form({ onLogin, data }) {
     }
   }, [isUsername, isPassword]);
 
-  const handleValidation = (e) => {
+  const handleValidation = async (e) => {
     e.preventDefault();
-    let isValid = true;
 
-    const user = users.find(user => user.username === isUsername);
+    try {
+        const response = await fetch('http://localhost:3003/api/usuarios/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username: isUsername, password: isPassword })
+        });
 
-    if (!user) {
-      setUsernameError("Username not found");
-      usernameErrorRef.current.show({ severity: 'error', detail: 'Username not fund' });
-      setButtonDisabled(false);
-      isValid = false;
-    } else {
-      setUsernameError("");
+        const data = await response.json();
+
+        if (response.ok) {
+            onLogin(isUsername);
+            navigate("/cartera");
+        } else {
+            alert(data.message);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error al iniciar sesión');
     }
-
-    if (user && user.password !== isPassword) {
-      setPasswordError("Incorrect password");
-      passwordErrorRef.current.show({ severity: 'error', detail: 'Incorrect password' });
-      isValid = false;
-    } else {
-      setPasswordError("");
-    }
-
-    if (isValid) {
-      onLogin(isUsername);
-      navigate("/cartera");
-    }
-  };
+};
   return (
     <main className="body">
       <div
@@ -71,7 +63,7 @@ export function Form({ onLogin, data }) {
               type="username"
               value={isUsername}
               onChange={(e) => setUsername(e.target.value)}
-              className={isUsername ? 'p-invalid mr-2' : 'mr-2'}
+              // className={isUsernameError ? 'p-invalid mr-2' : 'mr-2'}
             />
             <Messages ref={usernameErrorRef} />
           </div>
@@ -85,7 +77,7 @@ export function Form({ onLogin, data }) {
               type="password"
               value={isPassword}
               onChange={(e) => setPassword(e.target.value)}
-              className={isPassword ? 'p-invalid mr-2' : 'mr-2'}
+              // className={isPasswordError ? 'p-invalid mr-2' : 'mr-2'}
             />
             <Messages ref={passwordErrorRef}/>
           </div>
